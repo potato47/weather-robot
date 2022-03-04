@@ -40,11 +40,11 @@ yarn init -y
 
 - 安装依赖
 
-本项目使用了以下依赖包：qq-guild-bot（qq机器人 NodeSDK）、axios（网络请求库）、typescript、ts-node（执行typescript代码）、nodemon（代码改变时自动重启服务）、@types/node（node类型提示）@types/ws（websocket类型提示）
+本项目使用了以下依赖包：qq-guild-bot（qq机器人 NodeSDK）、axios（网络请求库）、node-cron（定时器）、typescript、ts-node（执行typescript代码）、nodemon（代码改变时自动重启服务））、@types/node（node类型提示）@types/ws（websocket类型提示）、@types/node-cron
 
 ```
-yarn add qq-guild-bot axios
-yarn add -D typescript ts-node nodemon @types/node @types/ws
+yarn add qq-guild-bot axios node-cron
+yarn add -D typescript ts-node nodemon @types/node @types/ws @types/node-cron
 ```
 
 - 测试机器人连接
