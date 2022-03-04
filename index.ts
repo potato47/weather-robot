@@ -1,5 +1,5 @@
-import { Robot } from './robot.js';
-import { WeatherService } from './weather-service.js';
+import { Robot } from './robot';
+import { WeatherService } from './weather-service';
 
 const botConfig = {
     appID: process.env.ROBOT_ID, // 申请机器人时获取到的机器人 BotAppID
@@ -19,7 +19,7 @@ robot.addAtMessagesHandler(message => {
         const imageUrl = 'https://www.tencent.com/img/index/tencent_logo.png';
         robot.sendImageMessage('这是图片消息', imageUrl, message.channel_id, message.id);
     } else {
-        robot.sendEmbdMessage(null, message.channel_id, message.id);
+        robot.sendEmbdMessage('', message.channel_id, message.id);
     }
 });
 

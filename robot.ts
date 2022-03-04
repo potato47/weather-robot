@@ -1,29 +1,29 @@
-import { createOpenAPI, createWebsocket } from 'qq-guild-bot';
+import { createOpenAPI, createWebsocket, IMessage, IOpenAPI, MessageToCreate } from 'qq-guild-bot';
 
 export class Robot {
-    client = null;
-    ws = null;
+    client: IOpenAPI;
+    ws: any;
 
-    constructor(config) {
+    constructor(config: any) {
         this.client = createOpenAPI(config); // 创建 client
         this.ws = createWebsocket(config); // 创建 websocket 连接
     }
 
-    addAtMessagesHandler(handler) {
-        this.ws.on('AT_MESSAGES', (data) => {
+    addAtMessagesHandler(handler: (message: IMessage) => void) {
+        this.ws.on('AT_MESSAGES', (data: any) => {
             console.log('[AT_MESSAGES] 事件接收 :', data);
             handler(data.msg);
         });
     }
 
-    sendTextMessage(content, channelId, fromMessageId) {
+    sendTextMessage(content: string, channelId: string, fromMessageId: string) {
         this.postMessage(channelId, {
             content: content,
             msg_id: fromMessageId,
         });
     }
 
-    sendImageMessage(content, image, channelId, fromMessageId) {
+    sendImageMessage(content: string, image: string, channelId: string, fromMessageId: string) {
         this.postMessage(channelId, {
             content: content,
             image: image,
@@ -31,7 +31,7 @@ export class Robot {
         });
     }
 
-    sendEmbdMessage(message, channelId, fromMessageId) {
+    sendEmbdMessage(message: string, channelId: string, fromMessageId: string) {
         this.postMessage(channelId, {
             "embed": {
                 "title": "标题",
@@ -55,7 +55,7 @@ export class Robot {
         });
     }
 
-    postMessage(channelId, message) {
+    postMessage(channelId: string, message: MessageToCreate) {
         this.client.messageApi.postMessage(channelId, message).then((res) => {
             console.log(res.data);
         }).catch((err) => {
