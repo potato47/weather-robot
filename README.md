@@ -44,7 +44,7 @@ yarn init -y
 
 ```
 yarn add qq-guild-bot axios
-yarn add -D typescript ts-node nodemon @types/node
+yarn add -D typescript ts-node nodemon @types/node @types/ws
 ```
 
 - 测试机器人连接
