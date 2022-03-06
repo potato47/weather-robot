@@ -32,6 +32,7 @@ export class Robot {
         this.client
     }
 
+    // 监听用户at机器人消息
     setAtMessagesHandler(handler: (message: IMessage) => void) {
         this.ws.on(AvailableIntentsEventsEnum.AT_MESSAGES, (data: any) => {
             console.log('[AT_MESSAGES] 事件接收 :', data);
@@ -39,6 +40,7 @@ export class Robot {
         });
     }
 
+    // 监听用户私信机器人消息
     setDirectMessagesHandler(handler: (message: IMessage) => void) {
         this.ws.on(AvailableIntentsEventsEnum.DIRECT_MESSAGE, (data: any) => {
             console.log('[DIRECT_MESSAGE] 事件接收 :', data);
@@ -50,6 +52,7 @@ export class Robot {
         });
     }
 
+    // 给频道用户发送消息，message 中带 msg_id(回复用户的消息) 为被动消息，不带为主动消息会限制频率
     postMessage(channelID: string, message: MessageToCreate) {
         this.client.messageApi.postMessage(channelID, message).then((res) => {
             console.log(res.data);
@@ -58,6 +61,7 @@ export class Robot {
         });
     }
 
+    // 给信息用户发消息
     postDirectMessage(guildID: string, message: MessageToCreate) {
         this.client.directMessageApi.postDirectMessage(guildID, message).then((res) => {
             console.log(res.data);
@@ -66,6 +70,7 @@ export class Robot {
         });
     }
 
+    // 获取私信用户场景 id，与频道 id 不同，用于给频道中的用户发主动私信消息
     async getDirectMessageGuildID(sourceGuildID: string, authorID: string) {
         const result = await this.client.directMessageApi.createDirectMessage({ source_guild_id: sourceGuildID, recipient_id: authorID });
         return result.data.guild_id;

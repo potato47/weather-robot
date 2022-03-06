@@ -1,7 +1,8 @@
 import axios from 'axios';
 
+// https://www.nowapi.com/api/weather.realtime
 const host = 'http://api.k780.com/';
-const sign = 'b59bc3ef6191eb9f747dd4e83c99f2a4';
+const sign = 'b59bc3ef6191eb9f747dd4e83c99f2a4';  // 临时 sign，可能会失效
 const appkey = '10003';
 
 interface IWeatherData {
